@@ -18,6 +18,7 @@ namespace mcp_server_aecdm
 		public static string AccessToken { get; set; }
 		public static string RefreshToken { get; set; }
 		public static string ClientId { get; set; }
+		public static string ClientSecret { get; set; }
 		public static string CallbackURL { get; set; }
 		public static string Scopes { get; set; }
 		public static string codeVerifier { get; set; }

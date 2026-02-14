@@ -28,15 +28,16 @@ To make this work, you'll need to:
 
 This sample creates an MCP server using the [ModelContextProtocol .NET SDK](https://www.nuget.org/packages/ModelContextProtocol/0.1.0-preview.6).
 
-In this scope we added 4 main tools to our server:
+In this scope we added the following main tools to our server:
 
-1. [GetToken](https://github.com/JoaoMartins-callmeJohn/aps-aecdm-mcp-dotnet/blob/main/mcp-server-aecdm/AuthTools.cs#L18-L21) to obtain a PKCE token that is used in the APS API requests.
-2. [GetHubs](https://github.com/JoaoMartins-callmeJohn/aps-aecdm-mcp-dotnet/blob/main/mcp-server-aecdm/AECDMTools.cs#L28-L52) to retrieve the hubs using the AEC Data Model API
-3. [GetProjects](https://github.com/JoaoMartins-callmeJohn/aps-aecdm-mcp-dotnet/blob/main/mcp-server-aecdm/AECDMTools.cs#L55-L83) to retrieve the projects using the AEC Data Model API
-4. [GetElementGroupsByProject](https://github.com/JoaoMartins-callmeJohn/aps-aecdm-mcp-dotnet/blob/main/mcp-server-aecdm/AECDMTools.cs#L86-L131) to retrieve the ElementGroups using the AEC Data Model API
-5. [GetElementsByElementGroupWithCategoryFilter](https://github.com/JoaoMartins-callmeJohn/aps-aecdm-mcp-dotnet/blob/main/mcp-server-aecdm/AECDMTools.cs#L134-L200) to retrieve the elements from one ElementGroup using a category filter.
-6. [RenderModel](https://github.com/JoaoMartins-callmeJohn/aps-aecdm-mcp-dotnet/blob/main/mcp-server-aecdm/ViewerTool.cs#L32C36-L143) to render one design with the Viewer
-7. [HighLightElements](https://github.com/JoaoMartins-callmeJohn/aps-aecdm-mcp-dotnet/blob/main/mcp-server-aecdm/ViewerTool.cs#L21-L29) to highlight elements in the Viewer.
+1. [GetToken](https://github.com/JoaoMartins-callmeJohn/aps-aecdm-mcp-dotnet/blob/main/mcp-server-aecdm/AuthTools.cs#L18-L21) to obtain a PKCE token that is used in the APS API requests. Uses a public client (Single Page Application) with PKCE flow.
+2. [GetTokenConfidential](https://github.com/JoaoMartins-callmeJohn/aps-aecdm-mcp-dotnet/blob/main/mcp-server-aecdm/AuthTools.cs#L24-L28) to obtain an access token using Authorization Code flow. Uses a client secret in addition to client id (Traditional Web Application). Requires `CLIENT_ID`, `CLIENT_SECRET`, and `CALLBACK_URL` environment variables.
+3. [GetHubs](https://github.com/JoaoMartins-callmeJohn/aps-aecdm-mcp-dotnet/blob/main/mcp-server-aecdm/AECDMTools.cs#L28-L52) to retrieve the hubs using the AEC Data Model API
+4. [GetProjects](https://github.com/JoaoMartins-callmeJohn/aps-aecdm-mcp-dotnet/blob/main/mcp-server-aecdm/AECDMTools.cs#L55-L83) to retrieve the projects using the AEC Data Model API
+5. [GetElementGroupsByProject](https://github.com/JoaoMartins-callmeJohn/aps-aecdm-mcp-dotnet/blob/main/mcp-server-aecdm/AECDMTools.cs#L86-L131) to retrieve the ElementGroups using the AEC Data Model API
+6. [GetElementsByElementGroupWithCategoryFilter](https://github.com/JoaoMartins-callmeJohn/aps-aecdm-mcp-dotnet/blob/main/mcp-server-aecdm/AECDMTools.cs#L134-L200) to retrieve the elements from one ElementGroup using a category filter.
+7. [RenderModel](https://github.com/JoaoMartins-callmeJohn/aps-aecdm-mcp-dotnet/blob/main/mcp-server-aecdm/ViewerTool.cs#L32C36-L143) to render one design with the Viewer
+8. [HighLightElements](https://github.com/JoaoMartins-callmeJohn/aps-aecdm-mcp-dotnet/blob/main/mcp-server-aecdm/ViewerTool.cs#L21-L29) to highlight elements in the Viewer.
 
 With these tools, you can use natural language to query the data from your elementgroups using the AEC Data Model API.
 
@@ -55,7 +56,7 @@ Clone this project or download it. It's recommended to install [GitHub desktop](
 Replace **client_id** with your own key (Single Page application).
 You can do it directly in the 'Properties/lauchSettings.json' file or through Visual Studio UI under the debug properties.
 
-You'll need to add a reference to your MCP server in the `claude_desktop_congif.json` file
+You'll need to add a reference to your MCP server in the `claude_desktop_config.json` file
 ```json
 {
     "mcpServers": {
